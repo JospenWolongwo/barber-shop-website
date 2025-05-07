@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Scissors, Clock, MapPin, Phone, Mail, Star, Menu, X, Instagram, Facebook, Twitter } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Scissors,
+  Clock,
+  MapPin,
+  Phone,
+  Mail,
+  Star,
+  Menu,
+  X,
+  Instagram,
+  Facebook,
+  Twitter,
+} from "lucide-react";
 
 // Main App Component
 export default function BarberShopWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,16 +44,16 @@ export default function BarberShopWebsite() {
   return (
     <div className="relative bg-black text-white min-h-screen font-sans overflow-x-hidden">
       {/* Navigation */}
-      <NavBar 
-        isMenuOpen={isMenuOpen} 
-        toggleMenu={toggleMenu} 
+      <NavBar
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
         activeSection={activeSection}
         handleSectionClick={handleSectionClick}
       />
-      
+
       {/* Main Content */}
       <main>
-        {activeSection === 'home' && (
+        {activeSection === "home" && (
           <>
             <HeroSection />
             <ServicesSection />
@@ -51,14 +63,14 @@ export default function BarberShopWebsite() {
             <TestimonialsSection />
           </>
         )}
-        {activeSection === 'services' && <ServicesSection />}
-        {activeSection === 'about' && <AboutSection />}
-        {activeSection === 'gallery' && <GallerySection />}
-        {activeSection === 'pricing' && <PricingSection />}
-        {activeSection === 'testimonials' && <TestimonialsSection />}
-        {activeSection === 'contact' && <ContactSection />}
+        {activeSection === "services" && <ServicesSection />}
+        {activeSection === "about" && <AboutSection />}
+        {activeSection === "gallery" && <GallerySection />}
+        {activeSection === "pricing" && <PricingSection />}
+        {activeSection === "testimonials" && <TestimonialsSection />}
+        {activeSection === "contact" && <ContactSection />}
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </div>
@@ -75,14 +87,14 @@ function LoadingScreen() {
         transition={{ duration: 0.5 }}
         className="text-center"
       >
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ ease: "linear", duration: 2, repeat: Infinity }}
           className="mx-auto mb-6"
         >
           <Scissors size={64} className="text-amber-500" />
         </motion.div>
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -90,7 +102,7 @@ function LoadingScreen() {
         >
           PRIME CUTS
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -106,31 +118,33 @@ function LoadingScreen() {
 // Navigation Component
 function NavBar({ isMenuOpen, toggleMenu, activeSection, handleSectionClick }) {
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'about', label: 'About' },
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'pricing', label: 'Pricing' },
-    { id: 'testimonials', label: 'Reviews' },
-    { id: 'contact', label: 'Contact' },
+    { id: "home", label: "Home" },
+    { id: "services", label: "Services" },
+    { id: "about", label: "About" },
+    { id: "gallery", label: "Gallery" },
+    { id: "pricing", label: "Pricing" },
+    { id: "testimonials", label: "Reviews" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur-sm z-40 py-4">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
             <Scissors size={28} className="text-amber-500 mr-2" />
-            <span className="text-2xl font-bold text-amber-500">PRIME CUTS</span>
+            <span className="text-2xl font-bold text-amber-500">
+              PRIME CUTS
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -141,7 +155,9 @@ function NavBar({ isMenuOpen, toggleMenu, activeSection, handleSectionClick }) {
                 key={item.id}
                 onClick={() => handleSectionClick(item.id)}
                 className={`relative text-lg transition-colors ${
-                  activeSection === item.id ? 'text-amber-500' : 'text-gray-300 hover:text-white'
+                  activeSection === item.id
+                    ? "text-amber-500"
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -149,7 +165,7 @@ function NavBar({ isMenuOpen, toggleMenu, activeSection, handleSectionClick }) {
                   <motion.div
                     layoutId="navUnderline"
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-500"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
               </button>
@@ -184,7 +200,7 @@ function NavBar({ isMenuOpen, toggleMenu, activeSection, handleSectionClick }) {
         {isMenuOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden overflow-hidden bg-gray-900"
@@ -195,7 +211,9 @@ function NavBar({ isMenuOpen, toggleMenu, activeSection, handleSectionClick }) {
                   key={item.id}
                   onClick={() => handleSectionClick(item.id)}
                   className={`py-3 text-left text-lg ${
-                    activeSection === item.id ? 'text-amber-500' : 'text-gray-300'
+                    activeSection === item.id
+                      ? "text-amber-500"
+                      : "text-gray-300"
                   }`}
                 >
                   {item.label}
@@ -223,9 +241,9 @@ function HeroSection() {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80" 
-          alt="Stylish barber shop interior" 
+        <img
+          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80"
+          alt="Stylish barber shop interior"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -238,20 +256,25 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">Crafting Your <span className="text-amber-500">Perfect</span> Look</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-4">
+              Crafting Your <span className="text-amber-500">Perfect</span> Look
+            </h1>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-xl md:text-2xl text-gray-300 mb-8">Experience premium grooming services tailored to your unique style. Where precision meets perfection.</p>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              Experience premium grooming services tailored to your unique
+              style. Where precision meets perfection.
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-24"
           >
             <button className="bg-amber-500 text-black px-8 py-3 rounded-sm text-lg font-medium hover:bg-amber-400 transition-colors">
               Book Appointment
@@ -283,7 +306,9 @@ function HeroSection() {
               <MapPin className="text-amber-500 mr-3" size={20} />
               <div>
                 <p className="text-white font-medium">Location</p>
-                <p className="text-gray-400 text-sm">123 Style Street, Downtown</p>
+                <p className="text-gray-400 text-sm">
+                  123 Style Street, Downtown
+                </p>
               </div>
             </div>
             <div className="flex items-center justify-center md:justify-end">
@@ -305,24 +330,28 @@ function ServicesSection() {
   const services = [
     {
       title: "Haircut & Styling",
-      description: "Precision cutting and styling tailored to your face shape and preferences.",
-      icon: <Scissors className="text-amber-500 mb-4" size={36} />
+      description:
+        "Precision cutting and styling tailored to your face shape and preferences.",
+      icon: <Scissors className="text-amber-500 mb-4" size={36} />,
     },
     {
       title: "Beard Trim & Shaping",
-      description: "Expert beard grooming to maintain or create your desired facial hair style.",
-      icon: <Scissors className="text-amber-500 mb-4" size={36} />
+      description:
+        "Expert beard grooming to maintain or create your desired facial hair style.",
+      icon: <Scissors className="text-amber-500 mb-4" size={36} />,
     },
     {
       title: "Hot Towel Shave",
-      description: "Classic straight razor shave with hot towels for the ultimate smooth finish.",
-      icon: <Scissors className="text-amber-500 mb-4" size={36} />
+      description:
+        "Classic straight razor shave with hot towels for the ultimate smooth finish.",
+      icon: <Scissors className="text-amber-500 mb-4" size={36} />,
     },
     {
       title: "Hair Treatments",
-      description: "Specialized treatments for hair health, including deep conditioning and scalp therapy.",
-      icon: <Scissors className="text-amber-500 mb-4" size={36} />
-    }
+      description:
+        "Specialized treatments for hair health, including deep conditioning and scalp therapy.",
+      icon: <Scissors className="text-amber-500 mb-4" size={36} />,
+    },
   ];
 
   return (
@@ -339,8 +368,13 @@ function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Our Premium <span className="text-amber-500">Services</span></h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Experience a range of exceptional grooming services designed to enhance your style and confidence.</p>
+          <h2 className="text-4xl font-bold mb-4">
+            Our Premium <span className="text-amber-500">Services</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Experience a range of exceptional grooming services designed to
+            enhance your style and confidence.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -391,7 +425,11 @@ function AboutSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750&q=80" alt="Barber cutting hair" className="w-full rounded-sm" />
+            <img
+              src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=750&q=80"
+              alt="Barber cutting hair"
+              className="w-full rounded-sm"
+            />
             <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 bg-amber-500 p-6 rounded-sm">
               <p className="text-black font-bold text-5xl">15+</p>
               <p className="text-black font-medium">Years of Experience</p>
@@ -403,21 +441,34 @@ function AboutSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-4xl font-bold mb-6">About <span className="text-amber-500">Prime Cuts</span></h2>
+            <h2 className="text-4xl font-bold mb-6">
+              About <span className="text-amber-500">Prime Cuts</span>
+            </h2>
             <p className="text-gray-300 mb-6">
-              Founded in 2010, Prime Cuts has been at the forefront of men's grooming in the city. We blend traditional barbering techniques with modern styles to deliver an exceptional experience.
+              Founded in 2010, Prime Cuts has been at the forefront of men's
+              grooming in the city. We blend traditional barbering techniques
+              with modern styles to deliver an exceptional experience.
             </p>
             <p className="text-gray-300 mb-6">
-              Our team of skilled barbers are passionate about their craft and are committed to perfection with every cut, trim, and shave. We believe that a great haircut is more than just a service—it's an experience.
+              Our team of skilled barbers are passionate about their craft and
+              are committed to perfection with every cut, trim, and shave. We
+              believe that a great haircut is more than just a service—it's an
+              experience.
             </p>
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div>
                 <h4 className="text-xl font-bold mb-2">Our Vision</h4>
-                <p className="text-gray-400">To redefine men's grooming standards and create a community space where style meets substance.</p>
+                <p className="text-gray-400">
+                  To redefine men's grooming standards and create a community
+                  space where style meets substance.
+                </p>
               </div>
               <div>
                 <h4 className="text-xl font-bold mb-2">Our Approach</h4>
-                <p className="text-gray-400">Personalized attention to detail, premium products, and techniques tailored to your unique features.</p>
+                <p className="text-gray-400">
+                  Personalized attention to detail, premium products, and
+                  techniques tailored to your unique features.
+                </p>
               </div>
             </div>
             <button className="bg-transparent border border-amber-500 text-amber-500 px-8 py-3 rounded-sm text-lg font-medium hover:bg-amber-500 hover:text-black transition-colors">
@@ -433,12 +484,30 @@ function AboutSection() {
 // Gallery Section Component
 function GallerySection() {
   const galleryImages = [
-    { src: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Stylish haircut" },
-    { src: "https://images.unsplash.com/photo-1541533848490-bc8115cd6522?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Beard trimming" },
-    { src: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Barbershop interior" },
-    { src: "https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Classic haircut" },
-    { src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Modern fade" },
-    { src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80", alt: "Hot towel shave" }
+    {
+      src: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Stylish haircut",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1541533848490-bc8115cd6522?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Beard trimming",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Barbershop interior",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Classic haircut",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Modern fade",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+      alt: "Hot towel shave",
+    },
   ];
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -457,8 +526,13 @@ function GallerySection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Our <span className="text-amber-500">Work</span></h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Browse through our gallery to see examples of our craftsmanship and the styles we've created for our clients.</p>
+          <h2 className="text-4xl font-bold mb-4">
+            Our <span className="text-amber-500">Work</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Browse through our gallery to see examples of our craftsmanship and
+            the styles we've created for our clients.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -471,15 +545,17 @@ function GallerySection() {
               className="relative overflow-hidden group"
               onClick={() => setSelectedImage(image)}
             >
-              <img 
-                src={image.src} 
-                alt={image.alt} 
+              <img
+                src={image.src}
+                alt={image.alt}
                 className="w-full h-64 object-cover rounded-sm transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-white font-medium mb-2">{image.alt}</p>
-                  <span className="text-amber-500 text-sm">Click to enlarge</span>
+                  <span className="text-amber-500 text-sm">
+                    Click to enlarge
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -516,9 +592,9 @@ function GallerySection() {
                 className="relative max-w-4xl mx-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                <img 
-                  src={selectedImage.src} 
-                  alt={selectedImage.alt} 
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
                   className="w-full max-h-[80vh] object-contain"
                 />
                 <button
@@ -563,18 +639,25 @@ function PricingSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Our <span className="text-amber-500">Pricing</span></h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">We offer competitive pricing for premium services. Quality grooming that fits your budget.</p>
+          <h2 className="text-4xl font-bold mb-4">
+            Our <span className="text-amber-500">Pricing</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            We offer competitive pricing for premium services. Quality grooming
+            that fits your budget.
+          </p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
           <div className="bg-gray-900 rounded-sm overflow-hidden">
             <div className="grid grid-cols-3 bg-gray-800 p-4">
               <div className="text-gray-300 font-medium">Service</div>
-              <div className="text-gray-300 font-medium text-center">Duration</div>
+              <div className="text-gray-300 font-medium text-center">
+                Duration
+              </div>
               <div className="text-gray-300 font-medium text-right">Price</div>
             </div>
-            
+
             <div className="divide-y divide-gray-800">
               {pricingItems.map((item, index) => (
                 <motion.div
@@ -585,8 +668,12 @@ function PricingSection() {
                   className="grid grid-cols-3 p-4 hover:bg-gray-800 transition-colors"
                 >
                   <div className="font-medium">{item.service}</div>
-                  <div className="text-gray-400 text-center">{item.duration}</div>
-                  <div className="text-amber-500 font-bold text-right">{item.price}</div>
+                  <div className="text-gray-400 text-center">
+                    {item.duration}
+                  </div>
+                  <div className="text-amber-500 font-bold text-right">
+                    {item.price}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -599,7 +686,10 @@ function PricingSection() {
             className="mt-10 text-center p-6 bg-gray-900 rounded-sm"
           >
             <h3 className="text-xl font-bold mb-2">Membership Plans</h3>
-            <p className="text-gray-400 mb-4">Save more with our monthly membership plans. Unlimited haircuts and special discounts.</p>
+            <p className="text-gray-400 mb-4">
+              Save more with our monthly membership plans. Unlimited haircuts
+              and special discounts.
+            </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <button className="bg-amber-500 text-black px-6 py-3 rounded-sm font-medium hover:bg-amber-400 transition-colors">
                 View Membership Options
@@ -621,18 +711,18 @@ function TestimonialsSection() {
     {
       name: "Michael Thompson",
       rating: 5,
-      text: "The best barbershop in town! John gave me the perfect fade and beard trim. The attention to detail was incredible."
+      text: "The best barbershop in town! John gave me the perfect fade and beard trim. The attention to detail was incredible.",
     },
     {
       name: "David Williams",
       rating: 5,
-      text: "I've been coming here for 3 years now and have never been disappointed. Great atmosphere and excellent service every time."
+      text: "I've been coming here for 3 years now and have never been disappointed. Great atmosphere and excellent service every time.",
     },
     {
       name: "Robert Johnson",
       rating: 5,
-      text: "First-class experience from start to finish. The hot towel shave was amazing. Highly recommend!"
-    }
+      text: "First-class experience from start to finish. The hot towel shave was amazing. Highly recommend!",
+    },
   ];
 
   return (
@@ -649,8 +739,13 @@ function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Client <span className="text-amber-500">Reviews</span></h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Don't just take our word for it. See what our clients have to say about their experience.</p>
+          <h2 className="text-4xl font-bold mb-4">
+            Client <span className="text-amber-500">Reviews</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Don't just take our word for it. See what our clients have to say
+            about their experience.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -679,7 +774,10 @@ function TestimonialsSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <a href="#" className="text-amber-500 flex items-center justify-center gap-2 hover:underline">
+          <a
+            href="#"
+            className="text-amber-500 flex items-center justify-center gap-2 hover:underline"
+          >
             <span>See more reviews on Google</span>
             <span>&rarr;</span>
           </a>
@@ -692,30 +790,30 @@ function TestimonialsSection() {
 // Contact Section Component
 function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // Here you would typically send the data to a server
-    alert('Thanks for your message! We will get back to you soon.');
+    alert("Thanks for your message! We will get back to you soon.");
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
     });
   };
 
@@ -733,9 +831,12 @@ function ContactSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-6">Get In <span className="text-amber-500">Touch</span></h2>
+            <h2 className="text-4xl font-bold mb-6">
+              Get In <span className="text-amber-500">Touch</span>
+            </h2>
             <p className="text-gray-300 mb-8">
-              Have questions or want to schedule an appointment? Contact us directly or use the form to send us a message.
+              Have questions or want to schedule an appointment? Contact us
+              directly or use the form to send us a message.
             </p>
 
             <div className="space-y-6 mb-8">
@@ -773,20 +874,20 @@ function ContactSection() {
             </div>
 
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-black transition-colors"
               >
                 <Facebook size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-black transition-colors"
               >
                 <Instagram size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-black transition-colors"
               >
                 <Twitter size={20} />
@@ -803,9 +904,11 @@ function ContactSection() {
             <h3 className="text-2xl font-bold mb-6">Send Us a Message</h3>
             <div className="space-y-6">
               <div>
-                <label htmlFor="name" className="block mb-2 text-gray-400">Name</label>
-                <input 
-                  type="text" 
+                <label htmlFor="name" className="block mb-2 text-gray-400">
+                  Name
+                </label>
+                <input
+                  type="text"
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -814,9 +917,11 @@ function ContactSection() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block mb-2 text-gray-400">Email</label>
-                <input 
-                  type="email" 
+                <label htmlFor="email" className="block mb-2 text-gray-400">
+                  Email
+                </label>
+                <input
+                  type="email"
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -825,9 +930,11 @@ function ContactSection() {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block mb-2 text-gray-400">Phone</label>
-                <input 
-                  type="tel" 
+                <label htmlFor="phone" className="block mb-2 text-gray-400">
+                  Phone
+                </label>
+                <input
+                  type="tel"
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
@@ -836,17 +943,19 @@ function ContactSection() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block mb-2 text-gray-400">Message</label>
-                <textarea 
+                <label htmlFor="message" className="block mb-2 text-gray-400">
+                  Message
+                </label>
+                <textarea
                   id="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="4" 
+                  rows="4"
                   className="w-full bg-gray-800 border border-gray-700 rounded-sm p-3 text-white focus:border-amber-500 focus:ring-amber-500 transition-colors"
                   placeholder="Your message"
                 ></textarea>
               </div>
-              <button 
+              <button
                 onClick={handleSubmit}
                 className="w-full bg-amber-500 text-black py-3 rounded-sm font-medium hover:bg-amber-400 transition-colors"
               >
@@ -869,55 +978,128 @@ function Footer() {
           <div>
             <div className="flex items-center mb-6">
               <Scissors size={28} className="text-amber-500 mr-2" />
-              <span className="text-2xl font-bold text-amber-500">PRIME CUTS</span>
+              <span className="text-2xl font-bold text-amber-500">
+                PRIME CUTS
+              </span>
             </div>
             <p className="text-gray-400 mb-6">
-              Premium barbershop offering top-quality haircuts, beard trims, and hot towel shaves in a relaxed, stylish environment.
+              Premium barbershop offering top-quality haircuts, beard trims, and
+              hot towel shaves in a relaxed, stylish environment.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <Facebook size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <Instagram size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-400 hover:text-amber-500 transition-colors"
               >
                 <Twitter size={20} />
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="text-xl font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Home</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Services</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Gallery</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Contact</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-xl font-bold mb-6">Services</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Haircuts</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Beard Trims</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Hot Towel Shave</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Hair Treatments</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">Membership Plans</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Haircuts
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Beard Trims
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Hot Towel Shave
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Hair Treatments
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-amber-500 transition-colors"
+                >
+                  Membership Plans
+                </a>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-xl font-bold mb-6">Opening Hours</h4>
             <ul className="space-y-3">
@@ -925,18 +1107,19 @@ function Footer() {
               <li className="text-gray-400">Saturday: 10am - 6pm</li>
               <li className="text-gray-400">Sunday: Closed</li>
             </ul>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="inline-block mt-6 bg-amber-500 text-black px-6 py-2 rounded-sm font-medium hover:bg-amber-400 transition-colors"
             >
               Book Now
             </a>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-500">
-            &copy; {new Date().getFullYear()} Prime Cuts Barbershop. All rights reserved.
+            &copy; {new Date().getFullYear()} Prime Cuts Barbershop. All rights
+            reserved.
           </p>
         </div>
       </div>
