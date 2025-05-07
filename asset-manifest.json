@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/barber-shop-website/static/css/main.64746601.css",
-    "main.js": "/barber-shop-website/static/js/main.1a1302ce.js",
+    "main.css": "/barber-shop-website/static/css/main.c9e8068f.css",
+    "main.js": "/barber-shop-website/static/js/main.ea78296d.js",
     "index.html": "/barber-shop-website/index.html",
-    "main.64746601.css.map": "/barber-shop-website/static/css/main.64746601.css.map",
-    "main.1a1302ce.js.map": "/barber-shop-website/static/js/main.1a1302ce.js.map"
+    "main.c9e8068f.css.map": "/barber-shop-website/static/css/main.c9e8068f.css.map",
+    "main.ea78296d.js.map": "/barber-shop-website/static/js/main.ea78296d.js.map"
   },
   "entrypoints": [
-    "static/css/main.64746601.css",
-    "static/js/main.1a1302ce.js"
+    "static/css/main.c9e8068f.css",
+    "static/js/main.ea78296d.js"
   ]
 }
