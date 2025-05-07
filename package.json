@@ -2,7 +2,7 @@
   "name": "barber-shop-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jospen.github.io/barber-shop-website",
+  "homepage": "https://jospenwolongwo.github.io/barber-shop-website",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
